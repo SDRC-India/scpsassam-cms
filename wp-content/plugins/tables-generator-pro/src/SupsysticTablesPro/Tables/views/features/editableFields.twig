@@ -1,0 +1,62 @@
+{% import '@ui/tooltip.twig' as tooltip %}
+{% import _self as checkbox %}
+
+{% macro checked(option) %}
+    {{ option }}
+    {% if option is defined and option == 'on' %}
+        checked="checked"
+    {% endif %}
+{% endmacro %}
+
+<tr>
+    <th scope="row">
+        <label for="save-editable-fields">
+            {{ environment.translate('Save Editable Fields') }}
+            {{ tooltip.icon(environment.translate('Allows to save data to the table through editable fields.')) }}
+        </label>
+    </th>
+    <td>
+        <input type="checkbox" name="saveEditableFields" id="save-editable-fields" {{ checkbox.checked(table.settings.saveEditableFields) }} />
+    </td>
+</tr>
+<tr>
+    <th scope="row">
+        <label for="editable-fields-logged-in">
+            {{ environment.translate('Use Editable Fields for Logged In Users Only') }}
+            {{ tooltip.icon(environment.translate('Allows to use editable fields only for logged in users.')) }}
+        </label>
+    </th>
+    <td>
+        <input type="checkbox" name="useEditableFieldsForLoggedInOnly"
+               id="editable-fields-logged-in"
+                {{ checkbox.checked(table.settings.useEditableFieldsForLoggedInOnly) }}
+               data-target-toggle=".editable-fields-logged-in-options"
+                />
+    </td>
+</tr>
+<tr class="editable-fields-logged-in-options"
+        {% if table.settings.useEditableFieldsForLoggedInOnly is not defined %}
+            style="display:none"
+        {% endif %}
+        >
+    <th scope="row">
+        <label for="editable-fields-roles">
+            {{ environment.translate('Use Editable Fields for Current Roles') }}
+            {{ tooltip.icon(environment.translate('Allows to use editable fields only for users with selected roles. If there are no chosen roles - all logged in users will have ability to use the editable fields.')) }}
+        </label>
+    </th>
+    <td>
+        {% set roles = {
+            administrator: 'Administrator',
+            editor:'Editor',
+            author:'Author',
+            contributor:'Contributor',
+            subscriber:'Subscriber'
+        } %}
+        <select multiple="multiple" name="useEditableFieldsForCurRoles[]" id="editable-fields-roles" data-placeholder="{{ environment.translate('Select roles')}}">
+            {% for role, title in roles %}
+                <option value="{{ role }}"{% if role in table.settings.useEditableFieldsForCurRoles %} selected="selected"{% endif %}>{{ title }}</option>
+            {% endfor %}
+        </select>
+    </td>
+</tr>

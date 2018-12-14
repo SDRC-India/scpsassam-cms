@@ -1,0 +1,22 @@
+.supsystic-plugin .setting-export-logo.selected .export-logo-img {
+	display: block;
+	margin-top: 10px;
+}
+
+.supsystic-plugin .setting-export-logo .export-logo-img,
+.supsystic-plugin .setting-export-logo .remove-logo {
+	display:none;
+}
+
+.supsystic-plugin tr.setting-export-logo.selected .remove-logo {
+	display: block;
+}
+
+.supsystic-plugin .setting-export-logo.selected .select-logo {
+	display: none;
+}
+
+.supsystic-plugin .setting-export-logo .export-logo-img img {
+	max-width: 100%;
+	height: auto;
+}

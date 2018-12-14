@@ -1,0 +1,19 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <div class="supsystic-item">
+        <h3>
+            {% block error_header %}
+                {{ environment.translate('Import error') }}
+            {% endblock %}
+        </h3>
+        <p>
+            {% block error_leadline %}
+                {{ environment.translate('Failed to import selected file') }}:
+            {% endblock %}
+            {% block error_message %}
+                {{ error.getMessage() }}
+            {% endblock %}
+        </p>
+    </div>
+{% endblock %}

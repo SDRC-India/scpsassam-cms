@@ -1,0 +1,2 @@
+ALTER TABLE `%prefix%diagrams` 
+ADD COLUMN `data` MEDIUMTEXT NULL DEFAULT NULL AFTER `end_col`;

@@ -1,0 +1,25 @@
+.supsystic-tables-export i {
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 1.2em;
+    width: 1.2em;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 0.3em;
+}
+
+i.export-pdf-icon {
+    background-image: url('../images/icons/pdf.svg');
+}
+
+i.export-csv-icon {
+    background-image: url('../images/icons/csv.svg');
+}
+
+i.export-xls-icon {
+    background-image: url('../images/icons/xls.svg');
+}
+
+i.export-print-icon {
+    background-image: url('../images/icons/print.svg');
+}

@@ -1,0 +1,78 @@
+{% import '@ui/tooltip.twig' as tooltip %}
+<tr>
+    <th scope="row">
+        <label for="features-export">
+            {{ environment.translate('Frontend Export') }}
+            {{ tooltip.icon(environment.translate('Allow export table to pdf, csv, xls on frontend')) }}
+        </label>
+    </th>
+    <td>
+        <select name="features[export][]" id="features-export" multiple="multiple">
+            {% for name, value in environment.getModule('exporter').getSupportedFormats() %}
+                <option value="{{ value }}" {% if value in table.settings.features.export %}selected="selected"{% endif %}>{{ name }}</option>
+            {% endfor %}
+        </select>
+    </td>
+</tr>
+<tr>
+    <th scope="row">
+        <label for="features-export-pdf-orientation">
+            {{ environment.translate('Export Page Orientation') }}
+            {{ tooltip.icon(environment.translate('Choose the page orientation for PDF export file')) }}
+        </label>
+    </th>
+    <td>
+        <select name="pdfOrientation" id="features-export-pdf-orientation">
+            {% for option in [{ 'name': environment.translate('Portrait'), 'value': 'portrait' }, { 'name': environment.translate('Landscape'), 'value': 'landscape' }] %}
+                <option value="{{ option.value }}" {% if table.settings.pdfOrientation == option.value %}selected="selected"{% endif %}>{{ option.name }}</option>
+            {% endfor %}
+        </select>
+    </td>
+</tr>
+<tr class="setting-export-logo {% if table.settings.exportLogo.src is not empty %}selected{% endif %}">
+    <th>
+        <label for="features-export-logo">
+            {{ environment.translate('Export Logo') }}
+            {{ tooltip.icon(environment.translate('Automticaly appends selected logo for output pdf or printing')) }}
+        </label>
+    </th>
+    <td>
+        <button class="button select-logo">Select Logo</button>
+        <button class="button remove-logo">Remove Logo</button>
+        <input type="hidden" name="exportLogo[src]" value="{{ table.settings.exportLogo.src }}">
+        <div class="export-logo-img" data="{{ table|json_encode | e }}">
+            <img src="{{ table.settings.exportLogo.src }}">
+        </div>
+    </td>
+</tr>
+<tr>
+    <th>
+        <label>{{ environment.translate('Logo Position') }}</label>
+    </th>
+    <td><select name="exportLogo[position]">
+
+            {% for value, name in {
+                'top': environment.translate('Above table'),
+                'bottom': environment.translate('Below table')
+            } %}
+                <option value="{{ value }}" {% if value in table.settings.exportLogo.position %}selected="selected"{% endif %}>{{ name }}</option>
+            {% endfor %}
+
+        </select>
+    </td>
+</tr>
+<tr>
+    <th>
+        <label>{{ environment.translate('Logo Alignment') }}</label>
+    </th>
+    <td><select name="exportLogo[alignment]" id="features-export" >
+           {% for value, name in {
+                'left': environment.translate('Left'),
+                'center': environment.translate('Center'),
+                'right': environment.translate('Right')
+            } %}
+                <option value="{{ value }}" {% if value in table.settings.exportLogo.alignment %}selected="selected"{% endif %}>{{ name }}</option>
+            {% endfor %}
+        </select>
+    </td>
+</tr>

@@ -1,0 +1,55 @@
+<div id="importDialog" title="{{ environment.translate('Import to the table') }}" style="display: none;">
+    <form action="{{ environment.generateUrl('importer', 'import') }}" accept-charset="UTF-8" enctype="multipart/form-data" method="post">
+        {% set columnSize = 4 %}
+        <h3 style="margin: 0.5em 0 1em 0;">{{ environment.translate('File extension type') }}</h3>
+        <div class="row">
+            <div class="col-xs-{{ columnSize }}">
+                <label for="it-csv">
+                    <input type="radio" name="extension" id="it-csv" value="csv" checked="checked"/>
+                    CSV
+                </label>
+            </div>
+            <div class="col-xs-{{ columnSize }}">
+                <label for="it-xls">
+                    <input type="radio" name="extension" id="it-xls" value="xls"/>
+                    MS Excel
+                </label>
+            </div>
+            <div class="col-xs-{{ columnSize }}">
+                <label for="it-spreadsheets">
+                    <input type="radio" name="extension" id="it-spreadsheets" value="spreadsheets"/>
+                    Google Spreadsheets
+                </label>
+            </div>
+            <div class="col-xs-12">
+                <div class="import-settings">
+                    <h3>{{ environment.translate('Import settings') }}</h3>
+                    <div class="csv-import-settings xls-import-settings" style="margin:10px 0">
+                        <input type="file" name="file" class="import-file"/>
+                    </div>
+                    <div class="csv-import-settings hidden">
+                        <label>
+                            {{ environment.translate('Delimiter') }}
+                        </label><br />
+                        <input type="text" name="settings[delimeter]" style="width: 50%; font-size:16px; margin:10px 0;" value=",">
+                    </div>
+                    <div class="spreadsheets-import-settings hidden">
+                        <label>
+                            {{ environment.translate('Url') }}
+                        </label>
+                        <input type="text" name="settings[url]" class="import-file" style="font-size:16px;" value="" placeholder="https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxxxxxxxxxxxxx/edit#gid=0">
+                        <p style="margin:10px 0;">{{ environment.translate('Important! Please, check the sharing settings of your spreadsheet: it must be accessed to edit for everyone who has link. In other case the data will not import to table.') }}</p>
+                    </div>
+                    <div class="common-settings">
+                        <label>
+                            <input type="checkbox" name="settings[append_data]" class="import-file">
+                            {{ environment.translate('Append to existing table data') }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input name="id" type="hidden" value="{{ table_id }}"/>
+    </form>
+    <div id="importErrorMsg" style="display: none;"></div>
+</div>

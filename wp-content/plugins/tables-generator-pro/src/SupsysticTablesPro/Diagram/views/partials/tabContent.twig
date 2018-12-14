@@ -1,0 +1,28 @@
+{% extends '@diagram/partials/tabContent.twig' %}
+
+{% block content %}
+    <div id="shortcodeName" style="display:none">{{ environment.getConfig().get('diagram_shortcode_name') }}</div>
+
+    <div class="tutorial" {% if diagrams is not empty %}style="display: none;"{% endif %}>
+        {% set url1 = '<a href="#" id="openEditorTab">' ~ environment.translate('Editor tab') ~ '</a>' %}
+        {% set url2 = '<a href="//supsystic.com/table-with-diagram-example/" target="_blank">' ~ environment.translate('how to create Diagrams with Data Table plugin') ~ '</a>' %}
+        {{ environment.translate('You have no diagrams for now. Go to %s -> select the required data in the table and click on “Add diagram” button. Also please check the tutorial %s')|format(url1, url2)|raw }}
+        <img src="{{ environment.getModule('diagram').getLocationUrl() }}/assets/img/diagrams_empty_tab.png" alt="Diagrams" title="diagrams_dialog_tab_1 Tab Content" />
+    </div>
+
+    {% for diagram in diagrams %}
+        <div class="prerendered-diagram diagram col-xs-6">
+            <div class="canvas">
+                {{ environment.getModule('diagram').doShortcode({ 'id': diagram.id }) | raw }}
+            </div>
+            <div class="info">
+                <div class="shortcode">
+                    <input readonly value="[{{ environment.getConfig().get('diagram_shortcode_name') }} id='{{ diagram.id }}']" type="text" onclick="this.select()"/>
+                    <button class="button delete-diagram" data-diagram-id="{{ diagram.id }}">
+                        <i class="fa fa-fw fa-trash-o"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

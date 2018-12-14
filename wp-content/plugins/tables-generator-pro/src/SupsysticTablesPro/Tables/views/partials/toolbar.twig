@@ -1,0 +1,13 @@
+{% import '@ui/tooltip.twig' as tooltip %}
+
+<ul>
+    <li>
+		<button {{ tooltip.attr(environment.translate('Add editable field')) }} data-toolbar="#toolbar-editableField">
+			<i class="fa fa-fw fa-pencil-square-o"></i>
+		</button>
+		<div id="toolbar-editableField" class="toolbar-content">
+			<a href="#" data-method="addEditableField"><i class="fa fa-fw fa-plus"></i></a>
+			<a href="#" data-method="removeEditableField"><i class="fa fa-fw fa-trash-o"></i></a>
+		</div>
+    </li>
+</ul>

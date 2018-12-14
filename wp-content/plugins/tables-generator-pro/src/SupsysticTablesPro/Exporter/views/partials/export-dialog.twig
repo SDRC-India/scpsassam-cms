@@ -1,0 +1,24 @@
+<div id="exportDialog" title="{{ environment.translate('Export table') }}" style="display: none;">
+    {% set columnSize = 4 %}
+    <h3 style="margin: 0.5em 0 1em 0;">{{ environment.translate('Select file type to export table') }}</h3>
+    <div class="row">
+        <div class="col-xs-{{ columnSize }}">
+            <label for="et-csv">
+                <input id="et-csv" class="export-type" type="radio" name="export-type" value="csv" checked="checked"/>
+                CSV
+            </label>
+        </div>
+        <div class="col-xs-{{ columnSize }}">
+            <label for="et-xls">
+                <input id="et-xls" class="export-type" type="radio" name="export-type" value="xls"/>
+                MS Excel 2007
+            </label>
+        </div>
+        <div class="col-xs-{{ columnSize }}">
+            <label for="et-pdf">
+                <input id="et-pdf" class="export-type" type="radio" name="export-type" value="pdf"/>
+                PDF
+            </label>
+        </div>
+    </div>
+</div>

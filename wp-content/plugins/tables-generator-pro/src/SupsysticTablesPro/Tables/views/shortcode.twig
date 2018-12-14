@@ -1,0 +1,37 @@
+{% extends '@tables/shortcode.twig' %}
+
+{% block before_table %}
+    {% spaceless %}
+        <div class="supsystic-tables-features">
+            {% if table.settings.features.export | length %}
+                <div class="supsystic-tables-export">
+                    <ul>
+                        <li>
+                            <span class="export-label">{{ environment.translate('Save as') }}</span>
+                        </li>
+                        {% for type in table.settings.features.export %}
+                            <li>
+                                <a
+                                   class="export-{{ type }}"
+                                   href="?export-supsystic-table=true&type={{ type }}&id={{ table.id }}"
+                                   {% if type == 'pdf' %}data-orientation="{{ table.settings.pdfOrientation }}"{% endif %}
+                                >
+                                    <i class="export-{{ type }}-icon"></i>{{ type }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block table_attributes %}
+    {% if table.settings.exportLogo.src is not empty %}
+        data-export-logo="{{ table.settings.exportLogo|json_encode|e }}"
+    {% endif %}
+    {% if table.settings.saveEditableFields is not empty %}
+        data-save-editable-fields="1"
+    {% endif %}
+{% endblock %}

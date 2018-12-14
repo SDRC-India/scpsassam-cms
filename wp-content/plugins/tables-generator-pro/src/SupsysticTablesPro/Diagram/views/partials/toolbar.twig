@@ -1,0 +1,9 @@
+{% import '@ui/tooltip.twig' as tooltip %}
+
+<ul>
+    <li>
+        <button {{ tooltip.attr(environment.translate('Add diagram')) }} data-method="addDiagram">
+            <i class="fa fa-fw fa-bar-chart"></i>
+        </button>
+    </li>
+</ul>

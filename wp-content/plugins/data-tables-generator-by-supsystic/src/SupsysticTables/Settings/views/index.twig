@@ -1,0 +1,90 @@
+{% extends 'layout.twig' %}
+{% import '@ui/tooltip.twig' as tooltip %}
+
+{% block content %}
+
+	<div class="supsystic-item tables-view">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="table-title-wrap">
+						<form action="{{ environment.generateUrl('settings', 'saveSettings') }}" method="POST">
+                            {% block beforeSettingsList %}
+								<button class="button">
+									<i class="fa fa-fw fa-save"></i>
+                                    {{ environment.translate('Save') }}
+								</button>
+							{% endblock %}
+							<div class="settings-list">
+								{% block beforeSettings %}{% endblock %}
+								<div class="setting">
+
+									<div class="table-search-option table-option">
+										<div class="setting-description">
+											<label>{{ environment.translate('Table search') }}</label>
+                                            {{ tooltip.icon(environment.translate('Enable search in a tables'), 'top', true) }} </label>
+										</div>
+										<div class="setting-control">
+											<input type="checkbox"  name="settings[table_search]" {% if settings.table_search == 'on' %} checked {%  endif %}>
+										</div>
+									</div>
+									<div class="table-step-option table-option">
+										<div class="setting-description">
+											<label>{{ environment.translate('Table rows saved per request') }}</label>
+                                            {{ tooltip.icon(environment.translate('If you do not know how to change - do not change it better. The preferred value is 400.'), 'top', true) }} </label>
+										</div>
+										<div class="setting-control">
+											<input type="text"  name="settings[table_step]" value="{{ settings.table_step | default(400) }}">
+										</div>
+									</div>
+                                    <div class="table-roles-option table-option">
+                                        <div class="setting-description">
+                                            <label>{{ environment.translate('Roles') }}</label>
+                                            {{ tooltip.icon(environment.translate('Role for users who can use plugin. Administrator is included by default'), 'top', true) }}
+
+                                            {% if environment.isPro() == false %}
+                                                <a target="_blank" href="{{ build_pro_url({ 'utm_medium': 'manage_roles' }) }}">
+                                                    {{ environment.translate('PRO option') }}
+                                                </a>
+                                            {% endif %}
+
+                                        </div>
+                                        <div class="setting-control">
+                                            {% if environment.isPro() != false %}
+                                                <select multiple="multiple" name="settings[access_roles][]" class="chosen-select" data-placeholder="{{ environment.translate('Select avalilable roles to use tables')}}">
+                                                    <option value="administrator" disabled selected>Administrator</option>
+                                                    {% set roles = {
+                                                    editor:'Editor',
+                                                    author:'Author',
+                                                    contributor:'Contributor',
+                                                    subscriber:'Subscriber'
+                                                    } %}
+                                                    {% for role, title in roles %}
+                                                        <option value="{{ role }}"
+                                                                {% if role in settings.access_roles %}
+                                                                    selected="selected"
+                                                                {% endif %}
+                                                                >{{ title }}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+								</div>
+
+								{% block afterSettings %}{% endblock %}
+							</div>
+							{% block afterSettingsList %}{% endblock %}
+						</form>
+						<div class="clear"></div>
+						<!-- /.clear -->
+					</div>
+					<!-- /.table-title-wrap -->
+				</div>
+				<!-- /.col-xs-12 -->
+			</div>
+		</div>
+	</div>
+	<!-- /.supsystic-item -->
+{% endblock %}

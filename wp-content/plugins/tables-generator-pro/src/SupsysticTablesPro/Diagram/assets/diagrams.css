@@ -1,0 +1,170 @@
+#row-tab-diagrams .tutorial {
+	padding: 10px 35px;
+	font-size: 18px;
+	line-height: 25px;
+}
+#row-tab-diagrams .tutorial img {
+	display: block;
+	width: 50%;
+	height: auto;
+	margin: 10px auto;
+	border: 1px solid #000000;
+}
+#row-tab-diagrams .diagram {
+  margin-bottom: 20px;
+  height: 368px;
+}
+
+#row-tab-diagrams .diagram .canvas, #row-tab-diagrams .supsystic-table-diagram {
+	width: 100% !important;
+	height: 300px !important;
+}
+
+#row-tab-diagrams .diagram .info .shortcode {
+  text-align: center;
+}
+#row-tab-diagrams .diagram .info .shortcode input {
+  width: 300px;
+  text-align: center;
+  font-family: monospace;
+}
+#previewDiagramDialog .tabs .tab.active {
+	display: block;
+}
+
+#previewDiagramDialog .preview-diagram {
+	width: 70%;
+	float: left;
+}
+#previewDiagramDialog .tab-switch:after {
+	content: '';
+	display: block;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #999;
+}
+#previewDiagramDialog .tab-switch a {
+	display: inline-block;
+	margin: 0 5px -1px;
+	border: 1px solid #999;
+	font-size: 15px;
+	color: #28282a;
+	line-height: 31px;
+	padding: 0 8px 1px;
+	text-decoration: none;
+}
+#previewDiagramDialog .tab-switch a.active {
+	border-bottom: 1px solid white;
+}
+#previewDiagramDialog .tab-switch a:focus {
+	box-shadow: none;
+	outline: none;
+}
+#previewDiagramDialog .tabs {
+	width: 30%;
+	float: left;
+	position: relative;
+}
+#previewDiagramDialog {
+	padding: 1em;
+}
+#previewDiagramDialog .tabs .tab {
+	left: 0;
+	top: 0;
+	display: none;
+	padding-right: 1em;
+}
+
+#previewDiagramDialog label {
+	display: block;
+	margin: 0.5em 0;
+}
+#previewDiagramDialog #settingsTab label {
+	width: 45%;
+	float: left;
+	padding: 7px 0;
+	margin: 0;
+	line-height: 18px;
+}
+#previewDiagramDialog #settingsTab input, #previewDiagramDialog #settingsTab select {
+	width: 55%;
+	float: right;
+	margin-bottom: 10px;
+}
+#previewDiagramDialog #settingsTab .icheckbox_minimal {
+	margin-top: 10px;
+}
+#previewDiagramDialog #settingsTab .optionContainer {
+	clear: both;
+}
+#previewDiagramDialog #settingsTab .chartColorContainer {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	padding: 3px;
+	border: 1px solid;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+#previewDiagramDialog #settingsTab .chartColorArea {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+#previewDiagramDialog #typeTab .icheckbox_minimal {
+	margin-right: 5px;
+}
+.preview-diagram {
+	margin-bottom: 1em;
+}
+
+.preview-diagram #diagram {
+	border: 1px solid #999;
+	height: 350px;
+	display: table;
+    width: 100%;
+}
+
+.preview-diagram #diagram span {
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+}
+
+.selectChartType {
+	margin-bottom: 1em;
+}
+
+.selectChartType .chart label {
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin: 0!important;
+    z-index: 10;
+    background: white;
+    padding: 3px;
+}
+.selectChartType .chart {
+	position: relative;
+	width: 48%;
+	height: auto;
+	float: left;
+	margin-right: 2%;
+	margin-bottom: 2%;
+	border: 3px solid #ddd;
+}
+
+.selectChartType .chart.active {
+	border-color: #4ae8ea;
+}
+
+.selectChartType .chart:hover {
+	cursor: pointer;
+}
+
+.selectChartType .chart-container {
+	height: 90px;	
+}
+
+.selectChartType .chart:nth-child(even) {
+	margin-right: 0;
+}

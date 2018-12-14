@@ -1,0 +1,132 @@
+<div id="previewDiagramDialog" class="supsystic-plugin" style="display: none; z-index:10" title="{{ environment.translate('Diagram') }}">
+	<div class="tab-switch" data-tabs>
+		<a class="active" href="#type">{{ environment.translate('Type') }}</a>
+		<a href="#settings">{{ environment.translate('Settings') }}</a>
+	</div>
+	<div class="tabs">
+		<div id="typeTab" class="tab active" data-tab="#type">
+			<select name="" id="chartType" hidden>
+				<option value="AreaChart">{{ environment.translate('Area Chart') }}</option>
+				<option value="LineChart">{{ environment.translate('Line Chart') }}</option>
+				<option value="PieChart">{{ environment.translate('Pie Chart') }}</option>
+				<option value="BarChart">{{ environment.translate('Bar Chart') }}</option>
+				<option value="ColumnChart">{{ environment.translate('Column Chart') }}</option>
+				<option value="BubbleChart">{{ environment.translate('Bubble Chart') }}</option>
+			</select>
+			<div class="selectChartType">
+				<div class="chart">
+					<label>{{ environment.translate('Area Chart') }}</label>
+					<div class="chart-container" id="AreaChart"></div>
+				</div>
+				<div class="chart">
+					<label>{{ environment.translate('Line Chart') }}</label>
+					<div class="chart-container" id="LineChart"></div>
+				</div>
+				<div class="chart">
+					<label>{{ environment.translate('Pie Chart') }}</label>
+					<div class="chart-container" id="PieChart"></div> 
+				</div>
+				<div class="chart">
+					<label>{{ environment.translate('Bar Chart') }}</label>
+					<div class="chart-container" id="BarChart"></div>
+				</div>
+				<div class="chart">
+					<label>{{ environment.translate('Column Chart') }}</label>
+					<div class="chart-container" id="ColumnChart"></div>
+				</div>
+				<div class="chart">
+					<label>{{ environment.translate('Bubble Chart') }}</label>
+					<div class="chart-container" id="BubbleChart"></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<label for="switchRowsColumns">
+				<input type="checkbox" id="switchRowsColumns">
+				<span>{{ environment.translate('Switch rows / columns') }}</span>
+			</label>
+			<label for="useFirstRow">
+				<input type="checkbox" id="useFirstRow">
+				<span>{{ environment.translate('Use first row as headers') }}</span>
+			</label>
+			<label for="useFirstColumn">
+				<input type="checkbox" id="useFirstColumn">
+				<span>{{ environment.translate('Use first column as labels') }}</span>
+			</label>
+		</div>
+		<div id="settingsTab" class="tab" data-tab="#settings">
+            <div class="optionContainer">
+                <label for="width">
+                    {{ environment.translate('Width') }}
+                    <i class="fa fa-question supsystic-tooltip" data-toggle="tooltip" data-placement="top" data-html="" data-original-title="" title="{{ environment.translate('Set the value in px or %, for example, 400 (equals to 400px) or 90%. Leave this field empty to use default width value.') }}"></i>
+                </label>
+                <input type="text" name="chart_width" value="" />
+            </div>
+            <div class="optionContainer">
+                <label for="heidht">
+                    {{ environment.translate('Height') }}
+                    <i class="fa fa-question supsystic-tooltip" data-toggle="tooltip" data-placement="top" data-html="" data-original-title="" title="{{ environment.translate('Set the value in px or %, for example, 200 (equals to 200px) or 80%. Leave this field empty to use default height value.') }}"></i>
+                </label>
+                <input type="text" name="chart_height" value="" />
+            </div>
+            <div class="optionContainer">
+                <label for="legend[position]">{{ environment.translate('Legend Position') }}</label>
+                <select name="legend[position]">
+                    <option value="none">{{ environment.translate('No legend') }}</option>
+                    <option selected value="top">{{ environment.translate('Above the chart') }}</option>
+                    <option value="bottom">{{ environment.translate('Below the chart') }}</option>
+                    <option value="left">{{ environment.translate('Left of the chart') }}</option>
+                    <option value="right">{{ environment.translate('Right of the chart') }}</option>
+                    <option value="labeled" class="PieChart" style="display: none;">{{ environment.translate('Lines between slices and values') }}</option>
+                    <option value="in" class="LineChart" style="display: none;">{{ environment.translate('Inside by the top left corner') }}</option>
+                </select>
+            </div>
+            <div class="optionContainer">
+                <label for="title">{{ environment.translate('Diagram Title') }}</label>
+                <input type="text" name="title" value="" />
+            </div>
+            <div class="optionContainer hideForPieChart">
+                <label for="hAxis[title]">{{ environment.translate('Axis X Title') }}</label>
+                <input type="text" name="hAxis[title]" value="" />
+            </div>
+            <div class="optionContainer hideForPieChart">
+                <label for="vAxis[title]">{{ environment.translate('Axis Y Title') }}</label>
+                <input type="text" name="vAxis[title]" value="" />
+            </div>
+            <div class="PieChart" style="display: none;">
+                <div class="optionContainer">
+                    <label for="is3D">{{ environment.translate('3D Diagram') }}</label>
+                    <select name="is3D">
+                        <option value="false">{{ environment.translate('No') }}</option>
+                        <option value="true">{{ environment.translate('Yes') }}</option>
+                    </select>
+                </div>
+                <div class="optionContainer">
+                    <label for="pieSliceText">{{ environment.translate('Text on Slice') }}</label>
+                    <select name="pieSliceText">
+                        <option value="percentage">{{ environment.translate('Percentage of slice size out of total') }}</option>
+                        <option value="value">{{ environment.translate('Quantitative value of slice') }}</option>
+                        <option value="label">{{ environment.translate('Name of slice') }}</option>
+                        <option value="none">{{ environment.translate('Not displaying') }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="optionContainer">
+                <label for="en_custom_colors">{{ environment.translate('Use custom colors') }}</label>
+                <input type="checkbox" id="enCustomColors" name="en_custom_colors" />
+            </div>
+            <div class="optionContainer chartColors" style="display: none;">
+                <div id="chartColorContainerExample" style="display: none;">
+                    <div class="chartColorArea"></div>
+                    <input type="text" name="colors[]" />
+                </div>
+            </div>
+            <div style="clear: both;"></div>
+		</div>
+	</div>
+	<div class="preview-diagram">
+		<div id="diagram">
+			<span>{{ environment.translate('Select chart type') }}</span>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
